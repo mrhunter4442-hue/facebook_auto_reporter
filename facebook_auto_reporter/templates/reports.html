@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h2>Generated Reports</h2>
+        
+        {% if reports %}
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Report File</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for report in reports %}
+                    <tr>
+                        <td>{{ report.name }}</td>
+                        <td>
+                            <a href="/download/{{ report.name }}" class="btn btn-sm btn-primary">Download</a>
+                            <a href="/view/{{ report.name }}" class="btn btn-sm btn-secondary">View</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="alert alert-info">
+            No reports generated yet. Run a reporting job to generate reports.
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

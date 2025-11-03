@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8">
+        <h2>Application Settings</h2>
+        <form method="POST">
+            <div class="mb-3">
+                <label for="fb_username" class="form-label">Facebook Username/Email</label>
+                <input type="text" class="form-control" id="fb_username" name="fb_username" required>
+            </div>
+            
+            <div class="mb-3">
+                <label for="fb_password" class="form-label">Facebook Password</label>
+                <input type="password" class="form-control" id="fb_password" name="fb_password" required>
+            </div>
+            
+            <div class="mb-3">
+                <label for="openai_key" class="form-label">OpenAI API Key</label>
+                <input type="password" class="form-control" id="openai_key" name="openai_key" required>
+            </div>
+            
+            <div class="mb-3">
+                <label for="max_reports" class="form-label">Max Reports per Session</label>
+                <input type="number" class="form-control" id="max_reports" name="max_reports" value="20" min="1" max="100">
+            </div>
+            
+            <div class="mb-3">
+                <label for="delay" class="form-label">Delay Between Reports (seconds)</label>
+                <input type="number" class="form-control" id="delay" name="delay" value="10" min="5" max="60">
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Save Settings</button>
+        </form>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h5>Current Settings</h5>
+            </div>
+            <div class="card-body">
+                <p><strong>Headless Mode:</strong> False</p>
+                <p><strong>Log Level:</strong> INFO</p>
+                <p><strong>Confidence Threshold:</strong> 80.0%</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

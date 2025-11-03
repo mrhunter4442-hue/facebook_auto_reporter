@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8">
+        <h2>Dashboard</h2>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Job Status</h5>
+                <p id="status-text">Checking status...</p>
+                <button id="start-btn" class="btn btn-primary">Start Reporting Job</button>
+                <button id="refresh-btn" class="btn btn-secondary">Refresh Status</button>
+            </div>
+        </div>
+        
+        <div class="card mt-4">
+            <div class="card-header">
+                <h5>Recent Activity</h5>
+            </div>
+            <div class="card-body">
+                <div id="activity-log">
+                    <p>No recent activity</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <h3>Quick Actions</h3>
+        <div class="list-group">
+            <a href="/settings" class="list-group-item list-group-item-action">Configure Settings</a>
+            <a href="/targets" class="list-group-item list-group-item-action">Manage Targets</a>
+            <a href="/reports" class="list-group-item list-group-item-action">View Reports</a>
+        </div>
+        
+        <div class="card mt-4">
+            <div class="card-header">
+                <h5>Statistics</h5>
+            </div>
+            <div class="card-body">
+                <p><strong>Targets Loaded:</strong> <span id="target-count">0</span></p>
+                <p><strong>Reports Generated:</strong> <span id="report-count">0</span></p>
+                <p><strong>Last Run:</strong> Never</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Status update function
+    function updateStatus() {
+        fetch('/status')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('status-text').textContent = 
+                    `Status: ${data.status} | Reports Generated: ${data.results_count}`;
+            });
+    }
+    
+    // Start job
+    document.getElementById('start-btn').addEventListener('click', function() {
+        fetch('/start_job')
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+                updateStatus();
+            });
+    });
+    
+    // Refresh status
+    document.getElementById('refresh-btn').addEventListener('click', function() {
+        updateStatus();
+    });
+    
+    // Initial status update
+    updateStatus();
+    setInterval(updateStatus, 5000); // Update every 5 seconds
+});
+</script>
+{% endblock %}

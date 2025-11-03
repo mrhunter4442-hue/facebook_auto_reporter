@@ -1,0 +1,38 @@
+body {
+    background-color: #f8f9fa;
+}
+
+.navbar-brand {
+    font-weight: bold;
+}
+
+.card {
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    border: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.btn-primary {
+    background-color: #4267B2;
+    border-color: #4267B2;
+}
+
+.btn-primary:hover {
+    background-color: #365899;
+    border-color: #365899;
+}
+
+.table th {
+    background-color: #e9ecef;
+}
+
+.alert {
+    border-radius: 0.375rem;
+}
+
+footer {
+    margin-top: 2rem;
+    padding: 1rem 0;
+    background-color: #343a40;
+    color: white;
+    text-align: center;
+}
